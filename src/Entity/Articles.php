@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Entity;
-
 use App\Repository\ArticlesRepository;
 use Doctrine\ORM\Mapping as ORM;
 

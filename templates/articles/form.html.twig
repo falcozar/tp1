@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire article{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+  
+    {% if (type_form == 0) %}
+         <h1>Création article</h1>
+         {% set name_button = "Créer" %}
+    {% else %}
+         <h1>Edition article</h1>
+         {% set name_button = "Mettre à jour" %}
+    {% endif %}
+    
+   
+    
+    <div class="container-fluid">
+        {{ form_start(formulaire)}}
+        <div class="form-horizontal">
+            {{ form_widget(formulaire) }}
+            <div class="form-group text-center"><button class="btn btn-success">{{ name_button }}</button></div>
+            <br>
+        </div>
+         {{ form_end(formulaire)}}
+      
+    </div>
+  
+
+
+</div>
+{% endblock %}

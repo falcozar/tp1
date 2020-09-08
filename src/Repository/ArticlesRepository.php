@@ -47,4 +47,17 @@ class ArticlesRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function searchByName($name)
+    {
+        $query = $this->createQueryBuilder('a');
+        $query
+            ->where('a.nom LIKE :recherche')
+            ->setParameter('recherche', "%".$name."%");
+        //si besoin afficher la requete sql
+        //print_r($query->getQuery->getSql()) die;
+
+        $results = $query->getQuery()->getResult();
+        return $results;
+    }
 }

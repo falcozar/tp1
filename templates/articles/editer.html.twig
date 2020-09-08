@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition article{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Fiche article</h1>
+    
+    <div class="card" style="margin:auto;max-width: 36rem;">
+            <div class="card-header text-center text-white bg-success mb-3">
+                {{ article.nom }}
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ article.description }}</p>
+                <h5 class="card-title">stock : {{ article.quantite }}</h5>
+                <h5 class="card-title">Prix unitaire : Ar {{ article.prix|number_format(0, ',', ' ') }}</h5>
+                
+            </div>
+            <div class="card-footer text-center">
+                <a href="{{ path('print_article', {id: article.id}) }}" class="btn btn-info">Imprimer</a>
+                <a href="{{ path('update_article', {id: article.id}) }}" class="btn btn-primary">Modifier</a>
+                <a href="{{ path('delete_article', {id: article.id}) }}" class="btn btn-danger" onclick="return confirm('Etes-vous sûre de vouloir supprimer cet article ?')">Supprimer</a>
+            </div>
+
+    </div>
+
+
+</div>
+{% endblock %}
