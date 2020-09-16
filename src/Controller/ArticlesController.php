@@ -142,10 +142,11 @@ class ArticlesController extends AbstractController
             return $this->redirectToRoute('articles');
 
         }
-        throw new NotFoundHttpException('Suppression impossible');
-        
-        
-    
+       throw new NotFoundHttpException();
+       
     }
+
+    
+ 
 
 }

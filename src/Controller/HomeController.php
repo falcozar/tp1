@@ -13,7 +13,7 @@ class HomeController extends AbstractController
     public function index()
     {
         return $this->render('home/index.html.twig', [
-            'title' => 'Blog Home - Start Bootstrap Template',
+            'title' => 'Mon blog',
         ]);
     }
 }
