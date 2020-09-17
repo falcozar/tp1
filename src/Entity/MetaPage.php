@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\MetaPageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+Use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * @ORM\Entity(repositoryClass=MetaPageRepository::class)
  */
@@ -18,6 +19,9 @@ class MetaPage
     private $id;
 
     /**
+     * @var \DateTime $created_at
+     * 
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $created_at;
@@ -51,7 +55,7 @@ class MetaPage
         return $this->id;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+   /* public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
     }
@@ -62,7 +66,7 @@ class MetaPage
 
         return $this;
     }
-
+*/
     public function getUsers(): ?Users
     {
         return $this->users;

@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+Use Gedmo\Mapping\Annotation as Gedmo;
+
 /**
  * @ORM\Entity(repositoryClass=PagesRepository::class)
  */
@@ -25,7 +27,8 @@ class Pages
     private $titre;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"titre"})
+     * @ORM\Column(length=128, unique=true)
      */
     private $slug;
 
@@ -45,11 +48,17 @@ class Pages
     private $images;
 
     /**
+     * @var \DateTime $created_at
+     * 
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $created_at;
 
     /**
+     * @var \Datetime $updated_at
+     * 
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $updated_at;
@@ -111,17 +120,7 @@ class Pages
         return $this;
     }
 
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
+ 
 
     public function getIntroduction(): ?string
     {
@@ -159,7 +158,7 @@ class Pages
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    /*public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
     }
@@ -169,7 +168,7 @@ class Pages
         $this->created_at = $created_at;
 
         return $this;
-    }
+    }*/
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {

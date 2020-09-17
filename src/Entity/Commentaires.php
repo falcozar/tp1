@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CommentairesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+Use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * @ORM\Entity(repositoryClass=CommentairesRepository::class)
  */
@@ -32,7 +33,10 @@ class Commentaires
      */
     private $contenu;
 
-    /**
+     /**
+     * @var \DateTime $created_at
+     * 
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $created_at;
@@ -90,7 +94,7 @@ class Commentaires
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    /*public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
     }
@@ -100,7 +104,7 @@ class Commentaires
         $this->created_at = $created_at;
 
         return $this;
-    }
+    }*/
 
     public function getEtats(): ?Etats
     {

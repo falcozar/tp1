@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+Use Gedmo\Mapping\Annotation as Gedmo;
+
 /**
  * @ORM\Entity(repositoryClass=CategoriesRepository::class)
  */
@@ -24,7 +26,10 @@ class Categories
      */
     private $name;
 
-    /**
+     /**
+     * @var \DateTime $created_at
+     * 
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $created_at;
@@ -74,7 +79,7 @@ class Categories
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    /*public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
     }
@@ -84,7 +89,7 @@ class Categories
         $this->created_at = $created_at;
 
         return $this;
-    }
+    }*/
 
     public function getUsers(): ?Users
     {

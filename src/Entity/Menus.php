@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\MenusRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+Use Gedmo\Mapping\Annotation as Gedmo;
+
 /**
  * @ORM\Entity(repositoryClass=MenusRepository::class)
  */
@@ -53,6 +55,22 @@ class Menus
      * @ORM\ManyToOne(targetEntity=Pages::class, inversedBy="menus")
      */
     private $pages;
+
+    /**
+     * @var \DateTime $created_at
+     * 
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $created_at;
+
+    /**
+     * @var \Datetime $updated_at
+     * 
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updated_at;
 
     public function getId(): ?int
     {
@@ -142,4 +160,28 @@ class Menus
 
         return $this;
     }
+
+    /*public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
+    }*/
 }

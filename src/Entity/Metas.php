@@ -6,7 +6,7 @@ use App\Repository\MetasRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+Use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * @ORM\Entity(repositoryClass=MetasRepository::class)
  */
@@ -24,8 +24,9 @@ class Metas
      */
     private $mots_cles;
 
-    /**
-     * @ORM\Column(type="string", length=255)
+     /**
+     * @Gedmo\Slug(fields={"mots_cles"})
+     * @ORM\Column(length=128, unique=true)
      */
     private $slug;
 
