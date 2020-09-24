@@ -79,17 +79,17 @@ class Categories
         return $this;
     }
 
-    /*public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
     }
-
+/*
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
 
         return $this;
-    }*/
+    }//*/
 
     public function getUsers(): ?Users
     {
@@ -176,4 +176,19 @@ class Categories
 
         return $this;
     }
+
+
+            /**
+     * Transform to string
+     * 
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
+
+
+
+    
 }

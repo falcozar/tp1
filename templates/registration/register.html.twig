@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+ <title>Espace admin : Inscription</title>
+ 
+        {# Font Awesome #}
+  <link rel="stylesheet" href="/assets/admin/plugins/fontawesome-free/css/all.min.css">
+  {# <!-- Ionicons --> #}
+  <link rel="stylesheet" href="/assets/admin/css/ionicons.min.css">
+  {# <!-- icheck bootstrap --> #}
+  <link rel="stylesheet" href="/assets/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  {# <!-- Theme style --> #}
+  <link rel="stylesheet" href="/assets/admin/css/adminlte.min.css">
+  {# <!-- Google Font: Source Sans Pro --> #}
+  <link href="/assets/admin/css/fa.css" rel="stylesheet">
+ 
+       </head>
+<body class="hold-transition login-page">
+
+
+ {#
+        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+    #}
+
+<div class="login-box">
+ <div class="login-logo">
+    <a href="{{ path('home') }}"><b>Ma Boutique</b></a>
+  </div>
+    <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Inscription</p>
+
+   
+   
+
+      {# <form action="{{path('app_register')}}" method="post"> #}
+        {{ form_start(registrationForm)}}
+
+       {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+        <div class="input-group mb-3">
+                
+          {# <input type="text" name="nom_user" class="form-control" placeholder="Nom..." required autofocus> #}
+          {{form_widget(registrationForm.nom_user, {'attr': {'class': 'form_control', 'placeholder':"Nom..."}})}}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+<div class="input-group mb-3">
+          {# <input type="text" name="prenom_user" class="form-control" placeholder="Prénom..."> #}
+           {{form_widget(registrationForm.prenom_user, {'attr': {'class': 'form_control', 'placeholder':"Prénom..."}})}}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+       
+          {# <input type="email" name="email" class="form-control" placeholder="Email" required> #}
+          {{form_widget(registrationForm.email, {'attr': {'class': 'form_control', 'placeholder':"E-mail..."}})}}
+          
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+           {{ form_errors(registrationForm.email) }}
+        </div>
+        <div class="input-group mb-3">
+          
+           {# <input type="password" placeholder="Password" name="plainPassword" id="inputPassword" class="form-control" required> #}
+           {{form_widget(registrationForm.plainPassword, {'attr': {'class': 'form_control', 'placeholder':"Mot de passe..."}})}}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+             {# {{form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form_control'}})}} #}
+              {# <input type="checkbox" id="agreeTerms" name="agreeTerms" required> #}
+              {# {{ form_label(registrationForm.agreeTerms, 'Accepter notre conditionss', {'label_attr': {'class': 'foo'}}) }} #}
+              {# <label for="remember">
+                 Accepter notre conditions
+              </label> #}
+              {# {{ form_label(registrationForm.agreeTerms, false, {
+                'label': 'Your name',
+                'label_attr': {'class': 'foo'}
+              }) }} #}
+              {{ form_row(registrationForm.agreeTerms, {'label': 'Accepter notre conditions'}) }}
+            </div>
+          </div>
+   <!-- /.col -->
+          <div class="col-4">
+             <button type="submit" class="btn btn-success">Enregistrer</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      {{ form_end(registrationForm)}}
+
+      
+      <!-- /.social-auth-links -->
+
+      
+     
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="/assets/admin/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/assets/admin/js/adminlte.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout etat{% endblock %}
+{# this tag only applies to the forms defined in this template #}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+    <div class="container">
+    <h2>Création etat</h2>
+  <!-- Page Content -->
+
+        <div class="row">
+            <div class="col-md-12">
+                 {{ include('etats/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

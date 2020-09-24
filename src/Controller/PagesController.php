@@ -7,23 +7,26 @@ use App\Repository\PagesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\Security\Core\User\UserInterface;
+use App\Entity\Users;
 class PagesController extends AbstractController
 {
     /**
      * @Route("/blogs", name="list_page")
      */
-    public function index()
+    public function index(PagesRepository $repo)
     {
+        $pages = $repo->findAll();
         return $this->render('pages/index.html.twig', [
             'title'=>'Listing blog',
+            'pages'=>$pages,
         ]);
     }
     /**
      * @Route("/page/new", name="create_page")
      * @Route("/page/edit/{id}", name="update_page")
      */
-    public function formPage(Request $request)
+    public function formPage(Request $request, UserInterface $user)
     {
         $type=0;
         $succes_message = 'Création effectuée avec succès';   
@@ -41,9 +44,9 @@ class PagesController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
-              $page->setCreatedAt(new \DateTime());
+              //$page->setCreatedAt(new \DateTime());
               //session à insérer pour l'user 
-              
+            $page->setUsers($user);  
             //insertion dans la table articles
             $manager->persist($page);
             $manager->flush();
@@ -72,3 +75,7 @@ class PagesController extends AbstractController
         ]);
     }
 }
+
+
+
+

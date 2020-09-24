@@ -1,20 +1,93 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ title }}{% endblock %}
+{% block title %}Listing page{% endblock %}
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+   
+    .negatif {background-color:red;}
+    .positif {background-color:green;}
+    .fond-pair {background-color:#f5f5f5;}
+    .fond-impair {background-color:#c0c0c0;}
 </style>
 
-<div class="example-wrapper">
+<div class="container-fluid">
+    <h1>Nos pages</h1>
+    {# <div class="float-left">
+        <form class="form-inline" method="POST" action="{{ path('articles')}}">
+                <div class="form-group mb-2">
+                     <input type="text" class="form-control" id="txtRecherche" name="txtRecherche" value="" placeholder="Nom d'article..."/>
+                </div>      
+                <div class="form-group mb-2">
+                 <button type="submit" class="btn btn-info">
+								<span class="glyphicon glyphicon-search">
+									<span>Trouver</span>
+								</span>
+							</button>
+                </div>
+        </form>
+    </div> #}
+    <div class="float-right" ><a href="{{ path('create_page')}}" class="btn btn-sm btn-primary" />Créer</a></div>
+    <br/>
+    <br/>
     
+    <table class="table table-bordered" id="tbl-page">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Catégorie</th>
+                <th scope="col">Introduction</th>
+                <th scope="col">Status</th>
+                <th scope="col">Auteur</th>
+                <th scope="col">Action</th>
+            </tr>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/vhosts/xformatter/tp1/src/Controller/PagesControllersController.php'|file_link(0) }}">src/Controller/PagesControllersController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/vhosts/xformatter/tp1/templates/pages_controllers/index.html.twig'|file_link(0) }}">templates/pages_controllers/index.html.twig</a></code></li>
-    </ul>
+    </thead>
+    <tbody>
+
+            {% if pages|length > 0 %}
+                
+                {% for page in pages %}
+                
+                    {% if loop.index is even %}
+                            {% set rowClass = 'fond-pair' %}
+                        
+                    {% else %}
+                        {% set rowClass = 'fond-impair' %}
+                    {% endif %}
+
+                {% if page.etats == "Activé" %}
+                    {% set class_status = 'positif' %}
+                    
+                {% else %}
+                    {% set class_status = 'negatif' %}
+                    
+                {% endif %}
+
+                    <tr class="{{ rowClass }}">
+                        <th scope="row">{{ loop.index  }}</th>
+                        <td>{{ page.titre }}</td>
+                        <td>{{ page.categories }}</td>
+                        <td>{{page.introduction|raw }}</td>
+                        <td class="{{ class_status }}">{{ page.etats}}</td>
+                        <td>{{ page.users }}</td>
+                        <td><a href="{{ path('update_page', {id: page.id}) }}" class="btn btn-sm btn-info">Editer</a></td>
+                    </tr>
+            
+                 {% endfor %}
+
+            {% else %}
+                <tr>
+                    <td colspan="7" class="text-center">Aucune page</td>
+                <tr>
+            {% endif %}
+
+            
+             
+    </tbody>
+    </table>
+
+
 </div>
 {% endblock %}

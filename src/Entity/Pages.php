@@ -6,11 +6,13 @@ use App\Repository\PagesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 Use Gedmo\Mapping\Annotation as Gedmo;
-
+Use symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass=PagesRepository::class)
+ * @Vich\Uploadable
  */
 class Pages
 {
@@ -23,6 +25,7 @@ class Pages
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min=5, max=255)
      */
     private $titre;
 
@@ -34,18 +37,30 @@ class Pages
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(min=10)
      */
     private $introduction;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(min=10)
      */
     private $contenu;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
      */
     private $images;
+
+    //ajout imageFile pour l'upload
+    /**
+     * @Vich\UploadableField(mapping="featured_images", fileNameProperty="images")
+     * @var File
+     */
+    private $imageFile;
+    
+
 
     /**
      * @var \DateTime $created_at
@@ -146,12 +161,32 @@ class Pages
         return $this;
     }
 
-    public function getImages(): ?string
+
+//ajout vich uploader
+// Dans les Getters/setters
+public function setImageFile(File $image = null)
+{
+    $this->imageFile = $image;
+
+    if ($image) {
+        $this->updated_at = new \DateTime('now');
+    }
+}
+
+public function getImageFile()
+{
+    return $this->imageFile;
+}
+
+
+    // public function getImages(): ?string
+    public function getImages()
     {
         return $this->images;
     }
 
-    public function setImages(?string $images): self
+    // public function setImages(?string $images): self
+    public function setImages($images)
     {
         $this->images = $images;
 

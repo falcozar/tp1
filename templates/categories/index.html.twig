@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categories index{% endblock %}
+
+{% block body %}
+<style>
+   
+    .negatif {background-color:red;}
+    .positif {background-color:green;}
+    .fond-pair {background-color:#f5f5f5;}
+    .fond-impair {background-color:#c0c0c0;}
+</style>
+<div class="container-fluid">
+<br/>
+    <h2>Gestion des categories</h2>
+    <div class="float-right" ><a href="{{ path('categories_new')}}" class="btn btn-sm btn-primary" />Créer</a></div>
+    <br/>
+    <br/>
+    
+<table data-toggle="table" class="table table-bordered" id="tbl-categorie">
+        <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>Nom</th>
+                <th>Status</th>
+                <th>Créée par</th>
+                <th>Date création</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                {# <td>{{ category.id }}</td> #}
+                 <th scope="row">{{ loop.index  }}</th>
+                <td>{{ category.name }}</td>
+                <td>{{ category.etats }}</td>
+                <td>{{ category.users }}</td>
+                <td>{{ category.createdAt ? category.createdAt|date('d/m/Y H:i') : '' }}</td>
+                <td>
+                    {# <a href="{{ path('categories_show', {'id': category.id}) }}">show</a> #}
+                    <a href="{{ path('categories_edit', {'id': category.id}) }}">Editer</a>
+                    <a href="{{ path('categories_delete', {'id': category.id}) }}" onclick="return confirm('Etes-vous sûre de vouloir supprimer cette ligne ?')">Supprimer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucune catégorie trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+  
+{% endblock %}

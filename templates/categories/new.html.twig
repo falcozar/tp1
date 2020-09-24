@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Interface de gestion des catégories{% endblock %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+<div class="container">
+    <h2>Nouvelle catégorie</h2>
+
+   
+    <div class="row">
+            <div class="col-md-12">
+                  {{ include('categories/_form.html.twig') }}
+            </div>
+        </div>
+
+   
+ 
+    </div>
+{% endblock %}

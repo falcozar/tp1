@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+ <title>Espace admin : connexion</title>
+ 
+        {# Font Awesome #}
+  <link rel="stylesheet" href="/assets/admin/plugins/fontawesome-free/css/all.min.css">
+  {# <!-- Ionicons --> #}
+  <link rel="stylesheet" href="/assets/admin/css/ionicons.min.css">
+  {# <!-- icheck bootstrap --> #}
+  <link rel="stylesheet" href="/assets/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  {# <!-- Theme style --> #}
+  <link rel="stylesheet" href="/assets/admin/css/adminlte.min.css">
+  {# <!-- Google Font: Source Sans Pro --> #}
+  <link href="/assets/admin/css/fa.css" rel="stylesheet">
+ 
+       </head>
+<body class="hold-transition login-page">
+
+
+ {#
+        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+    #}
+
+<div class="login-box">
+ <div class="login-logo">
+    <a href="{{ path('home') }}"><b>Ma Boutique</b></a>
+  </div>
+    <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Espace Administration</p>
+
+      <form method="post">
+
+      {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+  
+        <div class="input-group mb-3">
+          <input type="email" value="{{ last_username }}" name="email" class="form-control" placeholder="Email" required autofocus>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          
+           <input type="password" placeholder="Password" name="password" id="inputPassword" class="form-control" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember" name="_remember_me">
+              <label for="remember">
+                Se souvenir de moi
+              </label>
+            </div>
+          </div>
+            <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-sm btn-primary btn-block">Se connecter</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <div class="social-auth-links text-center mb-3">
+        <p>- OU -</p>
+        <a href="#" class="btn btn-block btn-primary">
+          <i class="fab fa-facebook mr-2"></i> Se connecter avec Facebook
+        </a>
+        <a href="#" class="btn btn-block btn-danger">
+          <i class="fab fa-google-plus mr-2"></i> Se connecter avec Google+
+        </a>
+      </div>
+      <!-- /.social-auth-links -->
+
+      <p class="mb-1">
+        <a href="forgot-password.html">Mot de passe oublié</a>
+      </p>
+      <p class="mb-0">
+        <a href="{{ path('app_register')}}" class="text-center">S'inscrire</a>
+      </p>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="/assets/admin/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/assets/admin/js/adminlte.min.js"></script>
+
+</body>
+</html>

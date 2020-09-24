@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+    {% include 'layout/navbar.html.twig' %}
+        {# {% block body %}{% endblock %} #}
+        <div id="content" div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% block center %}{% endblock %}
+                </div>
+                <div class="col-md-4">
+                    {% block right %}
+                        {% include 'layout/right.html.twig' %}
+                    {% endblock %}
+                </div>
+
+             </div>
+        </div>
+    {% block footer %}
+     {% include 'layout/footer.html.twig' %}
+    {% endblock %}
+    
+        {% block javascripts %}
+            <!--Bootstrap core JavaScript-->
+                <script src="/assets/vendor/jquery/jquery.min.js"></script>
+                <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        {% endblock %}
+    </body>
+</html>

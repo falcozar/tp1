@@ -1,0 +1,8 @@
+{{ form_start(form) }}
+    {# {{ form_widget(form) }} #}
+    {{ form_row(form.name, {'label':'Nom de la catégorie', 'attr':{'class':'form-control', 'placeholder':'Catégorie...'}}) }}
+    {{ form_row(form.etats, {'label':'Etats', 'attr':{'class':'form-control', 'placeholder':'Choisir status...'}}) }}
+    {# <button class="btn">{{ button_label|default('Save') }}</button> #}
+     <div class="form-group float-left"><button class="btn btn-success">{{ button_label|default('Ajouter') }}</button></div>
+     <div class="form-group float-right"> <a class="btn btn-danger" href="{{ path('categories_index') }}">Fermer</a></div>
+{{ form_end(form) }}
