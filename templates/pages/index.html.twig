@@ -72,6 +72,7 @@
                         <td>{{page.introduction|raw }}</td>
                         <td class="{{ class_status }}">{{ page.etats}}</td>
                         <td>{{ page.users }}</td>
+                        <td>{{ page.createdAt ? page.createdAt|date('d/m/Y H:i') : '' }}</td>
                         <td><a href="{{ path('update_page', {id: page.id}) }}" class="btn btn-sm btn-info">Editer</a></td>
                     </tr>
             

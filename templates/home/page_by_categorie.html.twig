@@ -1,13 +1,13 @@
 {% extends 'front.html.twig' %}
 
-{% block title %}{{ title }}{% endblock %}
+{% block title %}{{ blogs.name }}{% endblock %}
 
 {% block center %}
 
     <!-- Page Content -->
     
-            <h1 class="my-4">Actualités</h1>
-                {% for blog in pages %}
+            <h1 class="my-4">{{ blogs.name }}</h1>
+                {% for blog in blogs.pages %}
                 <!-- Blog Post -->
                 <div class="card mb-4">
                     {# <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"> #}
@@ -19,13 +19,14 @@
                     </div>
                     <div class="card-footer text-muted">
                         Ecrit le {{ blog.createdAt ? blog.createdAt|date('d/m/Y à H:i') : '' }}  par
-                        <span class="author">{{ blog.users }}</span> dans la categorie : <small><em>{{blog.categories.name}}</em></small>
+                        <span class="author">{{ blog.users }}</span>
                     </div>
                 </div>
-
+                {% else %}
+                    <p class="card-text text-center">Aucun article trouvée sur cette rubrique</p>
                  {% endfor %}
                
-                  {% if pages|length > 1 %}
+                {% if blogs.pages|length > 1 %}
                 <!-- Pagination -->
                 <ul class="pagination justify-content-center mb-4">
                     <li class="page-item">
@@ -36,10 +37,4 @@
                     </li>
                 </ul>
                 {% endif %}
-          
-
-            
-
-      
-
 {% endblock %}

@@ -55,6 +55,10 @@ class Pages
 
     //ajout imageFile pour l'upload
     /**
+     * @Assert\File(
+     *     maxSize="2M",
+     *     mimeTypes={"image/png", "image/jpeg", "image/pjpeg"}
+     * )
      * @Vich\UploadableField(mapping="featured_images", fileNameProperty="images")
      * @var File
      */
@@ -135,7 +139,11 @@ class Pages
         return $this;
     }
 
- 
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
 
     public function getIntroduction(): ?string
     {
@@ -193,11 +201,11 @@ public function getImageFile()
         return $this;
     }
 
-    /*public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
     }
-
+/*
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;

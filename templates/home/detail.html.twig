@@ -1,0 +1,26 @@
+{% extends 'front.html.twig' %}
+
+{% block title %}{{ blog.titre }}{% endblock %}
+
+{% block center %}
+
+    <!-- Page Content -->
+    
+            <h1 class="my-4">{{blog.titre}}</h1>
+             
+                <!-- Blog Post -->
+                <div class="card mb-4">
+                    {# <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"> #}
+                    <img class="card-img-top" src="{{ vich_uploader_asset(blog, 'imageFile')}}" alt="{{ blog.titre }}" width="750" height:"300" >
+                    <div class="card-body">
+                         <p class="card-text">{{ blog.introduction|raw}}</p>
+                        <p class="card-text">{{ blog.contenu|raw}}</p>
+                        
+                    </div>
+                    <div class="card-footer text-muted">
+                        Posted on {{ blog.createdAt ? blog.createdAt|date('M, d Y H:i') : '' }}  by
+                        <span class="author">{{ blog.users }}</span>
+                    </div>
+                </div>
+
+{% endblock %}

@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use App\Entity\Users;
+use App\Repository\CategoriesRepository;
+
 class PagesController extends AbstractController
 {
     /**
@@ -66,12 +68,14 @@ class PagesController extends AbstractController
         ]);
     }
     /**
-     * @Route("/page/{id}", name="detail_page")
+     * @Route("/page/{slug}", name="detail_page")
      */
-    public function show(Pages $page)
+    public function show(Pages $page, CategoriesRepository $categorie)
     {
-        return $this->render('home/index.html.twig', [
-            'page'=>$page,
+        $cat = $categorie->findBy(['etats' => 1 ]);
+        return $this->render('home/detail.html.twig', [
+            'blog'=>$page,
+            'categories'=>$cat
         ]);
     }
 }

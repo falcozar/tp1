@@ -16,7 +16,8 @@ class HomeController extends AbstractController
      */
     public function index(PagesRepository $repo, CategoriesRepository $categorie)
     {
-        $pages = $repo->findAll();
+        // $pages = $repo->findAll();
+        $pages = $repo->findBy(['etats' => 1 ]);
         $cat = $categorie->findBy(['etats' => 1 ]);
         // $users = $em->getRepository('MyProject\Domain\User')->findBy(array('age' => 20));
         return $this->render('home/index.html.twig', [

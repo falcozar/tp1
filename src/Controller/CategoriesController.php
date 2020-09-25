@@ -119,4 +119,20 @@ class CategoriesController extends AbstractController
        
     }
 
+    //show pages in category
+     /**
+     * @Route("/{id}/pages", name="page_by_category")
+     */
+    public function pagesByCategories(CategoriesRepository $categorie, Categories $category): Response
+    {
+        $cat = $categorie->findBy(['etats' => 1 ]); //for right place
+        
+        return $this->render('home/page_by_categorie.html.twig', [
+            'blogs'=>$category,
+            'categories'=>$cat
+        ]);
+    }
+
+
+
 }
